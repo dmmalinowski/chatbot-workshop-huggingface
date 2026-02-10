@@ -45,7 +45,7 @@ def load_data():
 
     
     Settings.llm = HuggingFaceInferenceAPI(
-    model_name="deepseek-ai/DeepSeek-R1-0528",
+    model_name="zai-org/GLM-4.7-Flash",
     token=st.secrets.hftoken,
     provider="auto",  # this will use the best provider available
     system_prompt="""You are an expert on the work of Rabindrath Tagore.
