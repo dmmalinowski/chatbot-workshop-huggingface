@@ -13,15 +13,15 @@ import nltk
 def get_stopwords():
     nltk.download('stopwords')
 
-st.set_page_config(page_title="Chat with a friend on the works of Rabindranath Tagore", page_icon="🦙", layout="centered", initial_sidebar_state="auto", menu_items=None)
-st.title("Chat with a friend on the works of Rabindranath Tagore")
+st.set_page_config(page_title="Chat with the professor", page_icon="🦙", layout="centered", initial_sidebar_state="auto", menu_items=None)
+st.title("Ask anything you'd like about LING 123")
 
 
 if "messages" not in st.session_state.keys():  # Initialize the chat messages history
     st.session_state.messages = [
         {
             "role": "assistant",
-            "content": "Ask me a question about Rabindranath Tagore!!",
+            "content": "Ask anything you'd like about LING 123!",
         }
     ]
 
@@ -44,10 +44,11 @@ def load_data():
     token=st.secrets.hftoken,
     generate_kwargs={"temperature": 0.7, "top_k": 50, "top_p": 0.95},
     provider="auto",  # this will use the best provider available
-    system_prompt="""You are an expert on the work of Rabindranath Tagore.
-    Answer the question using the provided documents, which contain relevant excerpts from the work of Rabindranath Tagore.
-    The context for all questions is the work of Rabindranath Tagore. Whenever possible, include a quotation from the provided excerpts of his work to illustrate your point.
-    Respond using a florid but direct tone, typical of an early modernist writer.
+    system_prompt="""You are the professor of Linguistics 123, Sound and Communication, at San José State University.
+    Answer the question using the provided documents, which include the course syllabus, assignment descriptions, and other key documents from Linguistics 123 that are available to all students.
+    Whenever possible, include a quotation or paraphrase from the provided documents to illustrate your point.
+    When questions cannot be answered with reference to these documents, users can be referred to the San Jose State University website or Department of Linguistics and Language Development website. 
+    Answer the question in a direct, friendly, casual yet professional style.
     Respond in fewer than 100 words.""",
     )
     index = VectorStoreIndex.from_documents(docs)
